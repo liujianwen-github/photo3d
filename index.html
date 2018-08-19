@@ -9,6 +9,15 @@
 		<title>照片墙 </title>
 
 		<meta http-equiv="imagetoolbar" content="no">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?674063c1a4467f78b8ba5716903ff576";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 		<style type="text/css">
 			html {
@@ -640,6 +649,7 @@
 			/* ==== start script ==== */
 
 			(function($) {
+$('body').on('click','canvas',function(){_hmt.push(['_trackEvent','canvas','click','按钮名','按钮值']);console.log('触发热点事件');console.log(_hmt)})
 				$.ajax({
 					type: "get",
 					url: "//47.104.7.232:8001/photo/items",
