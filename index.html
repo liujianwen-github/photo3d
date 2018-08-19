@@ -65,9 +65,12 @@ var _hmt = _hmt || [];
 			
 			#command {
 				position: absolute;
-				left: 1em;
-				top: 1em;
-				width: 130px;
+				right: 0;
+				top: 0;
+				overflow-y: scroll;
+				overflow-x: hidden;
+				width: 160px;
+				height: 500px;
 				z-index: 30000;
 				background: #000;
 				border: #000 solid 1em;
@@ -77,13 +80,15 @@ var _hmt = _hmt || [];
 				position: relative;
 				left: 1em;
 				top: 1em;
-				height: 160px;
+				/*height: 100vh;*/
 			}
 			
 			#bar .button {
-				position: absolute;
+				/*position: absolute;*/
+				display: inline-block;
 				background: #222;
 				width: 20px;
+				margin: 5px;
 				height: 20px;
 				cursor: pointer;
 			}
@@ -107,6 +112,9 @@ var _hmt = _hmt || [];
 				z-index: 30000;
 				padding-left: 12px;
 				cursor: pointer;
+				background-color: rgba(0,0,0,.5);
+				display: inline-block;
+				max-width: 200px;
 			}
 		</style>
 
@@ -725,7 +733,8 @@ $('body').on('click','canvas',function(){_hmt.push(['_trackEvent','canvas','clic
 					var arr = []
 					for(var i = 0; i < args.length; i++) {
 						arr.push({
-							src: args[i].imgs
+							src: args[i].imgs,
+							url: args[i].desc ||'没有备注信息'
 						})
 					}
 					console.log(arr)
