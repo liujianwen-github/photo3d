@@ -50,7 +50,7 @@
 				left: -9999px;
 				cursor: pointer;
 				image-rendering: optimizeSpeed;
-				z-index:-1;
+				z-index: -1;
 			}
 			
 			#screen .href {
@@ -120,16 +120,38 @@
 				text-align: center;
 				background-color: darkgray;
 			}
+			/*视频连接按钮*/
+			
+			.videoHref {
+				font-size: 12px;
+				display: flex;
+				justify-content: center;
+				cursor: pointer
+			}
+			
+			.videoHref:hover {
+				color: darkgray;
+			}
+			
+			.videoHref>a {
+				color: inherit;
+				text-decoration: none;
+			}
 		</style>
 	</head>
 
 	<body>
-
 		<div id="screen">
 
 			<div id="command">
 
-				<h1>照片墙</h1>
+				<h1>
+					<p style="text-align: center;">11090442</p>
+					<p style="text-align: center;">三周年</p>
+					<sub class="videoHref">
+						<a href="https://v.youku.com/v_show/id_XMzc1ODQ2MzIyOA==.html?x&sharefrom=android&sharekey=7c874198bac4139036d9837083ccb2ad2" target="_blank">查看视频</a>
+					</sub>
+				</h1>
 
 				<div id="bar"></div>
 
