@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				/* Setting default text color, background and a font stack */
+				font-size: 0.825em;
+				color: #666;
+				background-color: #fff;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			
+			.sponsorListHolder {
+				margin-bottom: 30px;
+			}
+			
+			.sponsor {
+				width: 180px;
+				height: 180px;
+				float: left;
+				margin: 4px;
+				/* Giving the sponsor div a relative positioning: */
+				position: relative;
+				cursor: pointer;
+			}
+			
+			.sponsor:hover .sponsorFlip {
+				transform: rotateX(180deg);
+				/*opacity: 0;*/
+			}
+			
+			.sponsor:hover .sponsorData {
+				/*opacity: 1;*/
+				transform: rotateX(0deg);
+			}
+			
+			.sponsorFlip,
+			.sponsorData {
+				/*  The sponsor div will be positioned absolutely with respect
+        to its parent .sponsor div and fill it in entirely */
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				border: 1px solid #ddd;
+				/*background: url("images/background.jpg") no-repeat center center #f9f9f9;*/
+				transition: all 1s ;
+				border: 1px solid #999;
+				-moz-box-shadow: 0 0 30px #999 inset;
+				-webkit-box-shadow: 0 0 30px #999 inset;
+				box-shadow: 0 0 30px #999 inset;
+				backface-visibility: hidden;
+			}
+			/*.sponsorFlip:hover {
+				border: 1px solid #999;
+				-moz-box-shadow: 0 0 30px #999 inset;
+				-webkit-box-shadow: 0 0 30px #999 inset;
+				box-shadow: 0 0 30px #999 inset;
+			}*/
+			
+			.sponsorFlip img {
+				/* Centering the logo image in the middle of the .sponsorFlip div */
+				max-width: 80%;
+				max-height: 80%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				overflow: hidden;
+				/*transform: rotateY(130deg) 1s;
+				-webkit-transform: rotateY(130deg);*/
+				/*margin: -70px 0 0 -70px;*/
+			}
+			
+			.sponsorData {
+				/* Hiding the .sponsorData div */
+				/*display: none;*/
+				transform: rotateX(-180deg);
+				/*opacity: 0;*/
+			}
+			
+			.sponsorDescription {
+				font-size: 11px;
+				/*padding: 50px 10px 20px 20px;*/
+				padding: 10%;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				font-style: italic;
+			}
+			
+			.sponsorURL {
+				font-size: 10px;
+				font-weight: bold;
+				padding-left: 20px;
+			}
+			
+			.clear {
+				/* This class clears the floats */
+				clear: both;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="contentBox">
+			<!--<div title="Click to flip" class="sponsor">
+				<div class="sponsorFlip">
+					<img alt="More about google" src="img/sponsors/google.png">
+				</div>
+
+				<div class="sponsorData">
+					<div class="sponsorDescription">
+						The company that redefined web search.
+					</div>
+					<div class="sponsorURL">
+						<a href="http://www.google.com/">http://www.google.com/ </a>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+		<script src="js/jquery.flip.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//			$(document).ready(function() {
+			//
+			//			});
+			(function($) {
+				/* The following code is executed once the DOM is loaded */
+				$.ajax({
+					type: "get",
+					url: "//47.104.7.232:8001/photo/items",
+					async: true,
+					success: function(res) {
+						console.log(res)
+						setTimeout(function() {
+							initPhotos(res.data)
+							//							initPhoto3D(imgs)
+						}, 2000)
+					},
+					error: function(err) {
+						console.error(err)
+					}
+				});
+
+				function initPhotos(args) {
+					var arr = []
+					//					容器dom
+					var contentBox = $('#contentBox')
+					for(var i = 0; i < args.length; i++) {
+						arr.push({
+							src: args[i].imgs,
+							url: args[i].desc || '没有备注信息'
+						})
+						var item = $(`<div title="11090442" class="sponsor">
+							<div class="sponsorFlip">
+								<img alt="More about google" src=${args[i].imgs}>
+							</div>
+				
+							<div class="sponsorData">
+								<div class="sponsorDescription">
+									${args[i].desc||'没有备注信息'}
+								</div>
+							</div>
+						</div>`)
+						contentBox.append(item)
+					}
+					console.log(arr)
+				}
+			})(jQuery)
+		</script>
+	</body>
+
+</html>
